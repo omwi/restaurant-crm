@@ -4,7 +4,7 @@ export async function login(username: string, password: string): Promise<User> {
   const res = await fetch("https://dummyjson.com/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password, expiresInMins: 1 }),
+    body: JSON.stringify({ username, password }),
   })
   const json = await res.json()
 
@@ -15,9 +15,11 @@ export async function login(username: string, password: string): Promise<User> {
   return {
     id: json.id,
     username: json.username,
-    avatarUrl: json.avatar,
+    avatarUrl: json.image,
     accessToken: json.accessToken,
     refreshToken: json.refreshToken,
+    firstName: json.firstName,
+    lastName: json.lastName,
   }
 }
 

@@ -13,6 +13,7 @@ import { Route as LoginRouteImport } from "./routes/login"
 import { Route as AuthRouteImport } from "./routes/_auth"
 import { Route as IndexRouteImport } from "./routes/index"
 import { Route as AuthEmployeesRouteImport } from "./routes/_auth.employees"
+import { Route as AuthChatRouteImport } from "./routes/_auth.chat"
 
 const LoginRoute = LoginRouteImport.update({
   id: "/login",
@@ -33,15 +34,22 @@ const AuthEmployeesRoute = AuthEmployeesRouteImport.update({
   path: "/employees",
   getParentRoute: () => AuthRoute,
 } as any)
+const AuthChatRoute = AuthChatRouteImport.update({
+  id: "/chat",
+  path: "/chat",
+  getParentRoute: () => AuthRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute
   "/login": typeof LoginRoute
+  "/chat": typeof AuthChatRoute
   "/employees": typeof AuthEmployeesRoute
 }
 export interface FileRoutesByTo {
   "/": typeof IndexRoute
   "/login": typeof LoginRoute
+  "/chat": typeof AuthChatRoute
   "/employees": typeof AuthEmployeesRoute
 }
 export interface FileRoutesById {
@@ -49,14 +57,21 @@ export interface FileRoutesById {
   "/": typeof IndexRoute
   "/_auth": typeof AuthRouteWithChildren
   "/login": typeof LoginRoute
+  "/_auth/chat": typeof AuthChatRoute
   "/_auth/employees": typeof AuthEmployeesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: "/" | "/login" | "/employees"
+  fullPaths: "/" | "/login" | "/chat" | "/employees"
   fileRoutesByTo: FileRoutesByTo
-  to: "/" | "/login" | "/employees"
-  id: "__root__" | "/" | "/_auth" | "/login" | "/_auth/employees"
+  to: "/" | "/login" | "/chat" | "/employees"
+  id:
+    | "__root__"
+    | "/"
+    | "/_auth"
+    | "/login"
+    | "/_auth/chat"
+    | "/_auth/employees"
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,14 +110,23 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof AuthEmployeesRouteImport
       parentRoute: typeof AuthRoute
     }
+    "/_auth/chat": {
+      id: "/_auth/chat"
+      path: "/chat"
+      fullPath: "/chat"
+      preLoaderRoute: typeof AuthChatRouteImport
+      parentRoute: typeof AuthRoute
+    }
   }
 }
 
 interface AuthRouteChildren {
+  AuthChatRoute: typeof AuthChatRoute
   AuthEmployeesRoute: typeof AuthEmployeesRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
+  AuthChatRoute: AuthChatRoute,
   AuthEmployeesRoute: AuthEmployeesRoute,
 }
 

@@ -1,9 +1,10 @@
+import Container from "@/components/common/container"
 import LoginForm from "@/features/auth/components/login-form"
 
 export default function LoginPage() {
   return (
-    <div className="container flex h-full items-center justify-center">
+    <Container className="flex-1 justify-center">
       <LoginForm />
-    </div>
+    </Container>
   )
 }

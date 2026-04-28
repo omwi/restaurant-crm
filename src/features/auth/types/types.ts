@@ -7,4 +7,6 @@ export type User = AuthTokens & {
   id: number
   username: string
   avatarUrl: string
+  firstName: string
+  lastName: string
 }

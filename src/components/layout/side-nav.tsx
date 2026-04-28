@@ -1,23 +1,47 @@
-import { Link } from "@tanstack/react-router"
+import { Home, MessageSquare, Users } from "lucide-react"
+
+import NavLink from "../common/nav-link"
+import SidebarItem from "../common/sidebar-item"
+import { Separator } from "../ui/separator"
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarHeader,
+  SidebarMenu,
+} from "../ui/sidebar"
 
 export default function SideNav() {
   return (
-    <aside>
-      <nav>
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>{" "}
-        <Link
-          to="/login"
-          search={{ redirect: "/" }}
-          className="[&.active]:font-bold"
+    <Sidebar>
+      <SidebarHeader>
+        <span
+          className="py-4 text-center font-bold tracking-widest"
+          role="banner"
         >
-          Login
-        </Link>
-        <Link to="/employees" className="[&.active]:font-bold">
-          Employees
-        </Link>
-      </nav>
-    </aside>
+          RESTAURANT CRM
+        </span>
+        <Separator />
+      </SidebarHeader>
+
+      <SidebarContent className="p-2">
+        <SidebarMenu className="gap-2">
+          <SidebarItem>
+            <NavLink to="/" title="Home" icon={<Home></Home>} />
+          </SidebarItem>
+
+          <SidebarItem>
+            <NavLink to="/employees" title="Employees" icon={<Users></Users>} />
+          </SidebarItem>
+
+          <SidebarItem>
+            <NavLink
+              to="/chat"
+              title="Chat"
+              icon={<MessageSquare></MessageSquare>}
+            />
+          </SidebarItem>
+        </SidebarMenu>
+      </SidebarContent>
+    </Sidebar>
   )
 }
