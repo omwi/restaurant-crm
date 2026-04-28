@@ -5,7 +5,7 @@ import SideNav from "./side-nav"
 
 export default function RootLayout() {
   return (
-    <div className="flex flex-row">
+    <div className="flex h-screen flex-row">
       <SideNav />
       <Outlet />
       <TanStackRouterDevtools />

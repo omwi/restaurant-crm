@@ -10,17 +10,17 @@
 
 import { Route as rootRouteImport } from "./routes/__root"
 import { Route as LoginRouteImport } from "./routes/login"
-import { Route as EmployeesRouteImport } from "./routes/employees"
+import { Route as AuthRouteImport } from "./routes/_auth"
 import { Route as IndexRouteImport } from "./routes/index"
+import { Route as AuthEmployeesRouteImport } from "./routes/_auth.employees"
 
 const LoginRoute = LoginRouteImport.update({
   id: "/login",
   path: "/login",
   getParentRoute: () => rootRouteImport,
 } as any)
-const EmployeesRoute = EmployeesRouteImport.update({
-  id: "/employees",
-  path: "/employees",
+const AuthRoute = AuthRouteImport.update({
+  id: "/_auth",
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -28,34 +28,40 @@ const IndexRoute = IndexRouteImport.update({
   path: "/",
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthEmployeesRoute = AuthEmployeesRouteImport.update({
+  id: "/employees",
+  path: "/employees",
+  getParentRoute: () => AuthRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute
-  "/employees": typeof EmployeesRoute
   "/login": typeof LoginRoute
+  "/employees": typeof AuthEmployeesRoute
 }
 export interface FileRoutesByTo {
   "/": typeof IndexRoute
-  "/employees": typeof EmployeesRoute
   "/login": typeof LoginRoute
+  "/employees": typeof AuthEmployeesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   "/": typeof IndexRoute
-  "/employees": typeof EmployeesRoute
+  "/_auth": typeof AuthRouteWithChildren
   "/login": typeof LoginRoute
+  "/_auth/employees": typeof AuthEmployeesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: "/" | "/employees" | "/login"
+  fullPaths: "/" | "/login" | "/employees"
   fileRoutesByTo: FileRoutesByTo
-  to: "/" | "/employees" | "/login"
-  id: "__root__" | "/" | "/employees" | "/login"
+  to: "/" | "/login" | "/employees"
+  id: "__root__" | "/" | "/_auth" | "/login" | "/_auth/employees"
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  EmployeesRoute: typeof EmployeesRoute
+  AuthRoute: typeof AuthRouteWithChildren
   LoginRoute: typeof LoginRoute
 }
 
@@ -68,11 +74,11 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    "/employees": {
-      id: "/employees"
-      path: "/employees"
-      fullPath: "/employees"
-      preLoaderRoute: typeof EmployeesRouteImport
+    "/_auth": {
+      id: "/_auth"
+      path: ""
+      fullPath: "/"
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     "/": {
@@ -82,12 +88,29 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    "/_auth/employees": {
+      id: "/_auth/employees"
+      path: "/employees"
+      fullPath: "/employees"
+      preLoaderRoute: typeof AuthEmployeesRouteImport
+      parentRoute: typeof AuthRoute
+    }
   }
 }
 
+interface AuthRouteChildren {
+  AuthEmployeesRoute: typeof AuthEmployeesRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthEmployeesRoute: AuthEmployeesRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  EmployeesRoute: EmployeesRoute,
+  AuthRoute: AuthRouteWithChildren,
   LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
