@@ -1,7 +1,9 @@
+import Container from "@/components/common/container"
+
 export default function EmployeesPage() {
   return (
-    <div>
+    <Container>
       <h1>Employees</h1>
-    </div>
+    </Container>
   )
 }
