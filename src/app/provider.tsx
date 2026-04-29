@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { SidebarProvider } from "@/components/ui/sidebar"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import AuthProvider from "@/features/auth/providers/auth-provider"
+import ChatProvider from "@/features/chat/providers/chat-provider"
 import type { ChildrenProp } from "@/types/types"
 
 const queryClient = new QueryClient({
@@ -16,7 +17,9 @@ export default function AppProvider({ children }: ChildrenProp) {
       <AuthProvider>
         <ThemeProvider>
           <TooltipProvider>
-            <SidebarProvider>{children}</SidebarProvider>
+            <SidebarProvider>
+              <ChatProvider>{children}</ChatProvider>
+            </SidebarProvider>
           </TooltipProvider>
         </ThemeProvider>
       </AuthProvider>

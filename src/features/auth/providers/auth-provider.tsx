@@ -1,3 +1,4 @@
+import { useQueryClient } from "@tanstack/react-query"
 import { useState } from "react"
 
 import type { ChildrenProp } from "@/types/types"
@@ -9,6 +10,8 @@ import type { User } from "../types/types"
 const AUTH_STORAGE_KEY = "auth-user"
 
 export default function AuthProvider({ children }: ChildrenProp) {
+  const client = useQueryClient()
+
   const [user, setUser] = useState<User | null>(() => {
     const persistedUser = localStorage.getItem(AUTH_STORAGE_KEY)
     return persistedUser ? JSON.parse(persistedUser) : null
@@ -23,6 +26,7 @@ export default function AuthProvider({ children }: ChildrenProp) {
   const logout = () => {
     setUser(null)
     localStorage.removeItem(AUTH_STORAGE_KEY)
+    client.invalidateQueries()
   }
 
   const refresh = async () => {
