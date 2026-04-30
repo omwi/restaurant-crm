@@ -9,10 +9,10 @@ export function useEmployeesQuery() {
     queryKey: ["employees"],
     queryFn: async () => {
       const response = await fetch(URL)
-      const json: UsersJson = await response.json()
       if (!response.ok) {
         throw new Error("Failed to fetch employees")
       }
+      const json: UsersJson = await response.json()
       return json.users.map(mapEmployee)
     },
   })
