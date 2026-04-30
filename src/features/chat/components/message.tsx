@@ -1,7 +1,7 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
 import { Route } from "@/routes/_auth"
-import { timestampToReadable } from "@/utils/date"
+import { stampToReadable } from "@/utils/date"
 
 import type { Message } from "../context/chat-context"
 
@@ -33,7 +33,7 @@ export default function Message({ message }: { message: Message }) {
           )}
 
           <time dateTime={message.timestamp} className="text-sm font-light">
-            {timestampToReadable(message.timestamp)}
+            {stampToReadable(message.timestamp)}
           </time>
         </div>
 
