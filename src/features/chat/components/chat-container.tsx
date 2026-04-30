@@ -7,7 +7,7 @@ import MessagesContainer from "./messages-container"
 
 export default function ChatContainer() {
   return (
-    <Card className="h-11/12 max-h-full w-full max-w-3xl rounded shadow-sm">
+    <Card className="h-full max-h-full w-full max-w-3xl rounded shadow-sm md:h-11/12">
       <CardHeader>
         <PageHeading title="Chat" className="text-center" />
       </CardHeader>

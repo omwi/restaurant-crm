@@ -1,7 +1,7 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
 import { Route } from "@/routes/_auth"
-import { stampToReadable } from "@/utils/date"
+import { stampToReadable, stampToTime } from "@/utils/date"
 
 import type { Message } from "../context/chat-context"
 
@@ -24,7 +24,7 @@ export default function Message({ message }: { message: Message }) {
 
       <div className="flex max-w-full flex-col">
         <div
-          className={cn("flex flex-row gap-2 px-2", {
+          className={cn("flex flex-row items-center gap-2 px-2", {
             "justify-end": isMessageOwner,
           })}
         >
@@ -32,8 +32,8 @@ export default function Message({ message }: { message: Message }) {
             <span className="text-sm font-bold">{message.author}</span>
           )}
 
-          <time dateTime={message.timestamp} className="text-sm font-light">
-            {stampToReadable(message.timestamp)}
+          <time dateTime={message.timestamp} className="text-xs font-light">
+            {stampToTime(message.timestamp)}
           </time>
         </div>
 

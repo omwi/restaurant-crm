@@ -14,7 +14,7 @@ export default function StatCard({
   return (
     <article
       className={cn(
-        "flex max-w-xs flex-col gap-4 rounded-xl bg-accent p-4 shadow-sm",
+        "flex flex-col gap-4 rounded-xl bg-accent p-4 shadow-sm",
         className
       )}
     >
