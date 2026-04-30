@@ -1,19 +1,13 @@
-import { useNavigate } from "@tanstack/react-router"
-
 import defaultAvatar from "@/assets/default-avatar.png"
 import { useAuth } from "@/features/auth/hooks/use-auth"
+import { useLogout } from "@/hooks/use-logout"
 
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { Button } from "../ui/button"
 
 export default function UserActions() {
-  const { user, logout } = useAuth()
-  const navigate = useNavigate()
-
-  function handleLogout() {
-    logout()
-    navigate({ to: "/" })
-  }
+  const { user } = useAuth()
+  const { handleLogout } = useLogout()
 
   return (
     <div className="flex flex-row items-center gap-2">
