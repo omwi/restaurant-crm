@@ -78,8 +78,8 @@ export default function ChatProvider({ children }: ChildrenProp) {
   })
 
   function sendSocketMessage(message: Message) {
-    if (!socket) {
-      return
+    if (!isConnected) {
+      throw new Error("Socket is not connected")
     }
     socket.send(JSON.stringify(message))
   }
