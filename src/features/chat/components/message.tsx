@@ -18,7 +18,7 @@ export default function Message({ message }: { message: Message }) {
     >
       {!isMessageOwner && (
         <Avatar className="mt-4">
-          <AvatarImage src={message.avatar} />
+          <AvatarImage src={message.avatar} alt="" />
         </Avatar>
       )}
 
