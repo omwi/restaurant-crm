@@ -1,13 +1,22 @@
 import { Checkbox } from "@/components/ui/checkbox"
 import { Field, FieldLabel } from "@/components/ui/field"
 
-import { useEmployees } from "../hooks/use-employees"
+import type { Employee } from "../types/types"
 import EmployeeCard from "./employee-card"
 
-export default function EmployeeCardsContainer() {
-  const { employees, toggleAll, isToggledAll, toggleEmployee, isSelected } =
-    useEmployees()
-
+export default function EmployeeCardsContainer({
+  employees,
+  isToggledAll,
+  toggleAll,
+  toggleEmployee,
+  isSelected,
+}: {
+  employees: Employee[]
+  isToggledAll: boolean
+  toggleAll: () => void
+  toggleEmployee: (employeeId: number) => void
+  isSelected: (employeeId: number) => boolean
+}) {
   return (
     <div className="flex w-full flex-col gap-2">
       <div className="w-fit self-end">

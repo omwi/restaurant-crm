@@ -1,13 +1,22 @@
 import { Table, TableBody, TableHeader } from "@/components/ui/table"
 
-import { useEmployees } from "../../hooks/use-employees"
+import type { Employee } from "../../types/types"
 import EmployeeRow from "./employee-row"
 import EmployeesTableHeader from "./employeed-table-header"
 
-export default function EmployeesTable() {
-  const { employees, isToggledAll, toggleAll, toggleEmployee, isSelected } =
-    useEmployees()
-
+export default function EmployeesTable({
+  employees,
+  isToggledAll,
+  toggleAll,
+  toggleEmployee,
+  isSelected,
+}: {
+  employees: Employee[]
+  isToggledAll: boolean
+  toggleAll: () => void
+  toggleEmployee: (employeeId: number) => void
+  isSelected: (employeeId: number) => boolean
+}) {
   return (
     <Table>
       <TableHeader>
