@@ -1,7 +1,9 @@
+import { env } from "@/app/env"
+
 import type { AuthTokens, User } from "../types/types"
 
 export async function login(username: string, password: string): Promise<User> {
-  const res = await fetch("https://dummyjson.com/auth/login", {
+  const res = await fetch(env.API_URL + env.LOGIN_PATH, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
@@ -24,7 +26,7 @@ export async function login(username: string, password: string): Promise<User> {
 }
 
 export async function refreshTokens(refreshToken: string): Promise<AuthTokens> {
-  const res = await fetch("https://dummyjson.com/auth/refresh", {
+  const res = await fetch(env.API_URL + env.REFRESH_PATH, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ refreshToken: refreshToken }),

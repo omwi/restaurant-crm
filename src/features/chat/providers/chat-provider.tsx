@@ -1,13 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { useEffect, useState } from "react"
 
+import { env } from "@/app/env"
 import { useAuth } from "@/features/auth/hooks/use-auth"
 import type { User } from "@/features/auth/types/types"
 import type { ChildrenProp } from "@/types/types"
 
 import { ChatContext, type Message } from "../context/chat-context"
 
-const SOCKET_URL = "wss://ws.ifelse.io"
 const MESSAGES_KEY = "messages"
 
 export default function ChatProvider({ children }: ChildrenProp) {
@@ -25,7 +25,7 @@ export default function ChatProvider({ children }: ChildrenProp) {
   const { user } = useAuth()
 
   useEffect(() => {
-    const websocket = new WebSocket(SOCKET_URL)
+    const websocket = new WebSocket(env.SOCKET_URL)
     websocket.onopen = () => setSocket(websocket)
     websocket.onmessage = (event) => {
       const data = event.data

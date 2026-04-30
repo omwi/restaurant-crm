@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query"
 
-import type { Employee, RawUser, UsersJson } from "../types/types"
+import { env } from "@/app/env"
 
-const URL = "https://dummyjson.com/users"
+import type { Employee, RawUser, UsersJson } from "../types/types"
 
 export function useEmployeesQuery() {
   const queryResults = useQuery({
     queryKey: ["employees"],
     queryFn: async () => {
-      const response = await fetch(URL)
+      const response = await fetch(env.API_URL + env.USERS_PATH)
       if (!response.ok) {
         throw new Error("Failed to fetch employees")
       }
