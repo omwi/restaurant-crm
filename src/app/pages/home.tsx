@@ -23,18 +23,9 @@ export default function HomePage() {
         </p>
         <div className="flex flex-row justify-center gap-2">
           {!auth.user && (
-            <>
-              <Button className="max-w-32 flex-1" onClick={handleClick}>
-                Login
-              </Button>
-              <Button
-                className="max-w-32 flex-1"
-                variant="outline"
-                onClick={handleClick}
-              >
-                Sign up
-              </Button>
-            </>
+            <Button className="max-w-40 flex-1" onClick={handleClick}>
+              Login
+            </Button>
           )}
         </div>
       </div>
