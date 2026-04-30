@@ -12,7 +12,11 @@ export default defineConfig({
       autoCodeSplitting: true,
       quoteStyle: "double",
     }),
-    react(),
+    react({
+      babel: {
+        plugins: ["babel-plugin-react-compiler"],
+      },
+    }),
     tailwindcss(),
   ],
   resolve: {

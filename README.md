@@ -37,6 +37,7 @@ Core dependencies:
 - React Hook Form - Form handling and validation
 - Zod - Schema validation for forms and data
 - @hookform/resolvers - Integration between React Hook Form and Zod
+- React Responsive - Media query hooks
 
 Build tools:
 

@@ -1,8 +1,8 @@
 import type { Shift } from "../types/types"
-import { useEmployees } from "./use-employees"
+import { useEmployeesQuery } from "./use-employees-query"
 
 export function useEmployeesStats() {
-  const { data: employees } = useEmployees()
+  const { data: employees } = useEmployeesQuery()
 
   const currentShift: Shift = "A"
 

@@ -1,33 +1,41 @@
-import { useQuery } from "@tanstack/react-query"
+import { useState } from "react"
 
-import type { Employee, RawUser, UsersJson } from "../types/types"
-
-const URL = "https://dummyjson.com/users"
+import { useEmployeesQuery } from "./use-employees-query"
 
 export function useEmployees() {
-  const queryResults = useQuery({
-    queryKey: ["employees"],
-    queryFn: async () => {
-      const response = await fetch(URL)
-      const json: UsersJson = await response.json()
-      if (!response.ok) {
-        throw new Error("Failed to fetch employees")
-      }
-      return json.users.map(mapEmployee)
-    },
-  })
-  return { ...queryResults, data: queryResults.data || [] }
-}
+  const { data: employees, ...rest } = useEmployeesQuery()
+  const [selectedIds, setSelectedIds] = useState<number[]>([])
+  const [isToggledAll, setIsToggledAll] = useState(false)
 
-function mapEmployee(user: RawUser): Employee {
+  function toggleAll() {
+    if (isToggledAll) {
+      setSelectedIds([])
+      setIsToggledAll(false)
+    } else {
+      setSelectedIds(employees.map((employee) => employee.id))
+      setIsToggledAll(true)
+    }
+  }
+
+  function toggleEmployee(employeeId: number) {
+    if (selectedIds.includes(employeeId)) {
+      setSelectedIds(selectedIds.filter((id) => id !== employeeId))
+    } else {
+      setSelectedIds([...selectedIds, employeeId])
+    }
+  }
+
+  function isSelected(employeeId: number) {
+    return selectedIds.includes(employeeId)
+  }
+
   return {
-    id: user.id,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    email: user.email,
-    avatarUrl: user.image,
-    shift: user.bloodGroup.endsWith("+") ? "A" : "B",
-    employmentDate: new Date(user.birthDate).toISOString(),
-    billingDate: new Date().toISOString(),
+    employees,
+    selectedIds,
+    isToggledAll,
+    toggleAll,
+    toggleEmployee,
+    isSelected,
+    ...rest,
   }
 }

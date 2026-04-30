@@ -12,6 +12,7 @@ import { TableCell, TableRow } from "@/components/ui/table"
 import { stampToDate } from "@/utils/date"
 
 import type { Employee } from "../../types/types"
+import BonusActions from "../bonus-actions"
 import EmployeeIdentityCard from "../employee-identity-card"
 import ShiftBadge from "../shift-badge"
 
@@ -38,21 +39,7 @@ export default function EmployeeRow({
       <TableCell>{stampToDate(employee.employmentDate)}</TableCell>
       <TableCell>{stampToDate(employee.billingDate)}</TableCell>
       <TableCell className="w-max">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="secondary"
-              className="size-8 rounded-full bg-accent"
-            >
-              <Plus />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem>Coffee</DropdownMenuItem>
-            <DropdownMenuItem>Snickers</DropdownMenuItem>
-            <DropdownMenuItem>Fire</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <BonusActions />
       </TableCell>
     </TableRow>
   )
