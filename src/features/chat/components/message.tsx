@@ -1,7 +1,7 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
 import { Route } from "@/routes/_auth"
-import { stampToReadable, stampToTime } from "@/utils/date"
+import { stampToTime } from "@/utils/date"
 
 import type { Message } from "../context/chat-context"
 
