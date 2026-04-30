@@ -10,10 +10,12 @@ export function useLogout() {
 
   const { logout } = useAuth()
 
-  function handleLogout() {
+  async function handleLogout() {
     logout()
-    queryClient.invalidateQueries()
-    router.invalidate()
+    await Promise.allSettled([
+      queryClient.invalidateQueries(),
+      router.invalidate(),
+    ])
     navigate({ to: "/" })
   }
 
