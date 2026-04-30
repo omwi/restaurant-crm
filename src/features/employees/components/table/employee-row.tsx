@@ -34,7 +34,7 @@ export default function EmployeeRow({
       <TableCell>{stampToDate(employee.employmentDate)}</TableCell>
       <TableCell>{stampToDate(employee.billingDate)}</TableCell>
       <TableCell className="w-max">
-        <BonusActions />
+        <BonusActions employee={employee} />
       </TableCell>
     </TableRow>
   )

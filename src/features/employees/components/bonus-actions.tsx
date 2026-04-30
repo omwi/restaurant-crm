@@ -1,4 +1,5 @@
 import { Plus } from "lucide-react"
+import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -8,7 +9,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-export default function BonusActions() {
+import type { Employee } from "../types/types"
+
+export default function BonusActions({ employee }: { employee: Employee }) {
+  const fullName = `${employee.firstName} ${employee.lastName}`
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -21,9 +26,15 @@ export default function BonusActions() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem>Coffee</DropdownMenuItem>
-        <DropdownMenuItem>Snickers</DropdownMenuItem>
-        <DropdownMenuItem>Fire</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => toast(`Coffee for ${fullName}`)}>
+          Coffee
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => toast(`Snickers for ${fullName}`)}>
+          Snickers
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => toast(`Fired ${fullName}`)}>
+          Fire
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

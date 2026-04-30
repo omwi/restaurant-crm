@@ -1,3 +1,5 @@
+import { toast } from "sonner"
+
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
@@ -26,7 +28,9 @@ export default function StatCard({
           <Separator className="bg-muted-foreground" />
           <div className="flex-1" />
         </div>
-        <Button variant="outline">View</Button>
+        <Button variant="outline" onClick={() => toast(`Viewing ${title}`)}>
+          View
+        </Button>
       </div>
     </article>
   )

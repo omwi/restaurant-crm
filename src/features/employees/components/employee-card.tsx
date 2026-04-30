@@ -42,7 +42,7 @@ export default function EmployeeCard({
           className="size-6"
           aria-label={`Select ${employee.lastName} ${employee.firstName}`}
         />
-        <BonusActions />
+        <BonusActions employee={employee} />
       </CardFooter>
     </Card>
   )
