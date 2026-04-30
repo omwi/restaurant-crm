@@ -25,11 +25,13 @@ export default function MessageInput() {
         maxLength={1024}
         className="flex-1"
         disabled={!isConnected}
+        aria-label="Write a message"
       />
       <Button
         variant="outline"
         onClick={handleSendMessage}
         disabled={!isConnected}
+        aria-label="Send message"
       >
         <Send />
       </Button>
