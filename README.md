@@ -1,21 +1,44 @@
-# React + TypeScript + Vite + shadcn/ui
+# Restaurant CRM
 
-This is a template for a new Vite project with React, TypeScript, and shadcn/ui.
+A responsive web application for managing restaurant operations with employee oversight, real-time communication, authentication, and a modern mobile-friendly interface.
 
-## Adding components
+[Deploy](https://restaurant-crm-bay.vercel.app/)
 
-To add components to your app, run the following command:
+## Features
+
+- Employees: Manage and view employee information in one place
+- Chat: Built-in chat page for team communication and quick coordination.
+- Authentication: Secure login system with protected routes
+- Responsive Design: Fully adaptive interface optimized for mobile and desktop screens
+
+## How to run locally
 
 ```bash
-npx shadcn@latest add button
+# Install dependencies
+pnpm i
+
+# Development server
+pnpm dev
+
+# Or build and preview
+pnpm build
+pnpm preview
 ```
 
-This will place the ui components in the `src/components` directory.
+## Tech Stack:
 
-## Using components
+Core dependencies:
 
-To use the components in your app, import them as follows:
+- React 19 - UI library for building interactive components
+- shadcn/ui - Accessible, reusable UI components
+- Tailwind CSS - Utility-first styling for fast responsive layouts
+- TanStack Router - Type-safe client-side routing
+- TanStack Query - Server state management and API requests
+- React Hook Form - Form handling and validation
+- Zod - Schema validation for forms and data
+- @hookform/resolvers - Integration between React Hook Form and Zod
 
-```tsx
-import { Button } from "@/components/ui/button"
-```
+Build tools:
+
+- vite
+- pnpm
