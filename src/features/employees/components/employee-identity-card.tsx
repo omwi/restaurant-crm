@@ -10,7 +10,7 @@ export default function EmployeeIdentityCard({
   return (
     <div className="flex flex-row items-center gap-2">
       <Avatar>
-        <AvatarImage src={employee.avatarUrl} />
+        <AvatarImage src={employee.avatarUrl} alt="" />
       </Avatar>
       <div className="flex flex-col gap-px">
         <p className="font-semibold">
