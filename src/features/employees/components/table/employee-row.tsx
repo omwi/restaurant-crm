@@ -19,7 +19,11 @@ export default function EmployeeRow({
   return (
     <TableRow>
       <TableCell>
-        <Checkbox checked={checked} onCheckedChange={toggle} />
+        <Checkbox
+          checked={checked}
+          onCheckedChange={toggle}
+          aria-label={`Select ${employee.lastName} ${employee.firstName}`}
+        />
       </TableCell>
       <TableCell>
         <EmployeeIdentityCard employee={employee} />

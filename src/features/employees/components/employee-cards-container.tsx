@@ -12,8 +12,12 @@ export default function EmployeeCardsContainer() {
     <div className="flex w-full flex-col gap-2">
       <div className="w-fit self-end">
         <Field orientation="horizontal">
-          <Checkbox checked={isToggledAll} onCheckedChange={toggleAll} />
-          <FieldLabel>Toggle All</FieldLabel>
+          <Checkbox
+            id="toggle-all"
+            checked={isToggledAll}
+            onCheckedChange={toggleAll}
+          />
+          <FieldLabel htmlFor="toggle-all">Toggle Everyone</FieldLabel>
         </Field>
       </div>
 

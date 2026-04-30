@@ -40,6 +40,7 @@ export default function EmployeeCard({
           checked={checked}
           onCheckedChange={toggle}
           className="size-6"
+          aria-label={`Select ${employee.lastName} ${employee.firstName}`}
         />
         <BonusActions />
       </CardFooter>

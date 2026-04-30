@@ -12,7 +12,11 @@ export default function BonusActions() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="secondary" className="size-8 rounded-full bg-accent">
+        <Button
+          variant="secondary"
+          className="size-8 rounded-full bg-accent"
+          aria-label="Show bonus actions"
+        >
           <Plus />
         </Button>
       </DropdownMenuTrigger>

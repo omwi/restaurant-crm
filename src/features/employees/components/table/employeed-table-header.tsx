@@ -11,7 +11,11 @@ export default function EmployeesTableHeader({
   return (
     <TableRow>
       <TableHead>
-        <Checkbox checked={isToggledAll} onCheckedChange={toggleAll} />
+        <Checkbox
+          checked={isToggledAll}
+          onCheckedChange={toggleAll}
+          aria-label="Toggle Everyone"
+        />
       </TableHead>
       <TableHead className="font-semibold text-muted-foreground">
         Employee
